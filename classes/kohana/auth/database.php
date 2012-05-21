@@ -131,7 +131,10 @@ class Kohana_Auth_Database extends Auth
 	 */
 	protected function complete_login($username)
 	{
-		$query = DB::Update();l
+		DB::update()
+			->set(array('logins' => 'logins + 1', 'last_login' => time()))
+			->where('username', '=', $username)
+			->execute();
 
 		return parent::complete_login($user);
 	}
