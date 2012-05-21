@@ -7,7 +7,7 @@
  * @package    	Kohana/Auth
  * @author		Nicholas Curtis		<nich.curtis@gmail.com>
  */
-class Kohana_Auth_Database extends Auth`
+class Kohana_Auth_Database extends Auth
 {
 	/**
 	 * Constructor loads the user list into the class.
