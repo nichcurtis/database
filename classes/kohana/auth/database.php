@@ -129,12 +129,14 @@ class Kohana_Auth_Database extends Auth
 	 * @param	string		username
 	 * @return 	void
 	 */
-	protected function complete_login($username)
+	protected function complete_login($user)
 	{
-		DB::update($this->_config['table_Name'])
-			->set(array('logins' => 'logins + 1', 'last_login' => time()))
-			->where('username', '=', $username)
-			->execute();
+		$query = DB::update($this->_config['table_name'])
+			->set(array('logins' => $user['logins'] + 1))
+			->set(array('last_login' => time()))
+			->where('username', '=', $user['username']);
+
+		$query->execute();
 
 		return parent::complete_login($user);
 	}
