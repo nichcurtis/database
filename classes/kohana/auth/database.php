@@ -7,7 +7,7 @@
  * @package    	Kohana/Auth
  * @author		Nicholas Curtis		<nich.curtis@gmail.com>
  */
-class Kohana_Auth_Database extends Auth
+class Kohana_Auth_Database extends Auth`
 {
 	/**
 	 * Constructor loads the user list into the class.
@@ -97,6 +97,43 @@ class Kohana_Auth_Database extends Auth
 		}
 
 		return hash_hmac($this->_config['hash_method'], $str, $hash_key);
+	}
+
+	/**
+	 * Get the stored password for a username.
+	 *
+	 * @param 	string		username
+	 * @return	string
+	 */
+	public function password($username)
+	{
+		$query = DB::select()
+			->from($this->_config['table_name'])
+			->where('username', '=', $username);
+
+		$result = $query->execute($this->_config['db_instance']);
+
+		if ($result->count() === 1)
+		{
+			$user = $result->current();
+			return ( ! $user['password']) ? $user['password'] : FALSE ;
+		}
+
+		return FALSE:
+	}
+
+	/**
+	 * Complete the login for a user by incrementing the logins and setting
+	 * session data: user_id, username, roles.
+	 *
+	 * @param	string		username
+	 * @return 	void
+	 */
+	protected function complete_login($username)
+	{
+		$query = DB::Update();l
+
+		return parent::complete_login($user);
 	}
 
 	/**
