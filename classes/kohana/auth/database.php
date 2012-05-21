@@ -119,7 +119,7 @@ class Kohana_Auth_Database extends Auth
 			return ( ! $user['password']) ? $user['password'] : FALSE ;
 		}
 
-		return FALSE:
+		return FALSE;
 	}
 
 	/**
