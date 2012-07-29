@@ -89,14 +89,7 @@ class Kohana_Auth_Database extends Auth
 	 */
 	public function hash($str, $hash_key=null)
 	{
-		if ($hash_key === null)
-		{
-			if ( ! $this->_config['hash_key'])
-				throw new Kohana_Exception('A valid hash key must be set in your auth config.');
-			$hash_key = $this->_config['hash_key'];
-		}
-
-		return hash_hmac($this->_config['hash_method'], $str, $hash_key);
+		return parent::hash($str, $hash_key);
 	}
 
 	/**
